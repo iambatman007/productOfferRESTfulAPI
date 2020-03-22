@@ -27,6 +27,6 @@ It has the following features
 
 URL: http://localhost:8080/offerlist/{offerId}
 
-#### 3. Delete an existing valid offer
+#### 3. Delete an existing valid offer (only valid offer can be deleted and Expired offer cannot be deleted)
 
 URL: http://localhost:8080/offerlist/delete/{offerId}
