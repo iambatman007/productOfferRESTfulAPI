@@ -1,0 +1,6 @@
+com\shop\productOffer\domain\Category.class
+com\shop\productOffer\service\OfferService.class
+com\shop\productOffer\domain\Offer.class
+com\shop\productOffer\repository\OfferRepository.class
+com\shop\productOffer\ProductOfferApplication.class
+com\shop\productOffer\web\OfferController.class

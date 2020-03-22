@@ -1,0 +1,3 @@
+com\shop\productOffer\AbstractTest.class
+com\shop\productOffer\web\OfferControllerTests.class
+com\shop\productOffer\service\OfferServiceTests.class
