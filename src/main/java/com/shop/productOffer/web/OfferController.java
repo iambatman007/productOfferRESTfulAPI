@@ -48,6 +48,11 @@ public class OfferController {
         }
     }
 
+    @RequestMapping(path="/delete/{id}")
+    public void deleteOffer(@PathVariable("id") Integer OfferId){
+        offerService.deleteOffer(OfferId);
+    }
+
     @RequestMapping(path="/createoffer", method = RequestMethod.POST)
     public ResponseEntity createAnOffer(@RequestBody  Map<String, String> payload) throws ParseException {
 

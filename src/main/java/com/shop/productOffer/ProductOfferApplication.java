@@ -27,14 +27,21 @@ public class ProductOfferApplication implements CommandLineRunner {
 	}
 
 	private void createOffers() throws ParseException {
+
+		// Id = 1 (Valid)
 		offerService.createOffer("shoes discount","get 50% discount on all shoes",
 				new SimpleDateFormat("dd/MM/yyyy").parse("09/11/2020"),
 				50.00,Category.apparel);
 
-
+		// Id = 2 (expired)
 		offerService.createOffer("yogurt discount","get 10% discount on all types of yogurts",
 				new SimpleDateFormat("dd/MM/yyyy").parse("09/11/2001"),
 				10.00,Category.food);
+
+		//Id = 3 (Valid)
+		offerService.createOffer("toys discount","get 30% discount on all shoes",
+				new SimpleDateFormat("dd/MM/yyyy").parse("09/11/2020"),
+				30.00,Category.toys);
 
 	}
 }

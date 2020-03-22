@@ -68,7 +68,6 @@ public class OfferControllerTests extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         Assert.assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        //Offer[] offerInfo = super.mapFromJson(content,Offer[].class);
         Assert.assertTrue(content.length()>0);
     }
 
@@ -77,10 +76,10 @@ public class OfferControllerTests extends AbstractTest {
     public void checkGetOfferNonExistent() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/offerlist/123")
                 .accept(MediaType.TEXT_PLAIN_VALUE)).andReturn();
-        System.out.println("mvcResult "+mvcResult.getResponse().getErrorMessage());
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();
         Assert.assertEquals("The Offer does not exist",content);
+        Assert.assertEquals(404,status);
     }
 
     //GET request: Test case to check the response for expired offer
@@ -92,5 +91,38 @@ public class OfferControllerTests extends AbstractTest {
         Assert.assertEquals(404, status);
         String content = mvcResult.getResponse().getContentAsString();
         Assert.assertEquals("The offer has expired",content);
+    }
+
+    //GET Request : Deleting offer with id =1(valid)  and check if it exist
+    @Test
+    public void checkDeleteOffer() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/offerlist/delete/1")
+                .accept(MediaType.TEXT_PLAIN_VALUE)).andReturn();
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/offerlist/1")
+                .accept(MediaType.TEXT_PLAIN_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        String content = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals("The Offer does not exist",content);
+        Assert.assertEquals(404,status);
+
+    }
+
+    //GET Request : Deleting expired offer with id =2(Expired) and check if it exist
+    @Test
+    public void checkDeleteExpiredOffer() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/offerlist/delete/2")
+                .accept(MediaType.TEXT_PLAIN_VALUE)).andReturn();
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/offerlist/2")
+                .accept(MediaType.TEXT_PLAIN_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        Assert.assertEquals(404, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals("The offer has expired",content);
+
+
     }
 }
